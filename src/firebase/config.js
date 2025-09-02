@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
-import {getFirestore} from "firebase/firebase"
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
-const firebaseConfig = {
+const firebaseConfig = { 
   apiKey: "AIzaSyBOzIlXKGjIXPAziKgxbrAcGdmO1wZDvDo",
   authDomain: "miniblog-2602a.firebaseapp.com",
   projectId: "miniblog-2602a",
@@ -10,9 +11,8 @@ const firebaseConfig = {
   appId: "1:902710347129:web:fcd6e4e9e34080f7241ba8"
 };
 
-const app = initializeApp(firebaseConfig);
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);                
+const db   = getFirestore(app);             
 
-const db = getFirestore(app);
-
-export {db};
-
+export { app, auth, db };
