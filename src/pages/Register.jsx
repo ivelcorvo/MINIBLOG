@@ -1,5 +1,4 @@
 import { useState,useEffect } from "react";
-
 import { useAuthentication } from "../hooks/useAuthentication";
 
 const Register = () => {
@@ -12,7 +11,7 @@ const Register = () => {
   const [confirmPassword,setConfirmPassword] = useState("");
   const [error,setError]                     = useState("");
 
-  const {auth, createUser, loading, error:authError} = useAuthentication();
+  const {createUser, loading, error:authError} = useAuthentication();
 
   useEffect(()=>{
     if(authError){
@@ -21,30 +20,33 @@ const Register = () => {
   },[authError]);
 
   // #### CRIAR USUÁRIO ####
-  const handleSubimit = async(e)=>{
-    e.preventDefault();
+    const handleSubimit = async(e)=>{
+      e.preventDefault();
 
-    setError("");
+      setError("");
 
-    const user = {
-      displayName,
-      email,
-      password
+      const user = {
+        displayName,
+        email,
+        password
+      };
+
+      if(password !== confirmPassword){
+        setError("As senhas precisam ser iguais!");
+        return
+      }
+
+      // const res = await createUser(user);
+      await createUser(user);
+
+      // console.log(res);
+      // console.log(user);
+
+      setDisplayName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
     };
-
-    if(password !== confirmPassword){
-      setError("As senhas precisam ser iguais!");
-      return
-    }
-
-    const res = await createUser(user);
-
-    console.log(res);
-
-    console.log(user);
-    
-
-  };
 
   return (
     <div>
