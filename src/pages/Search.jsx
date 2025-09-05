@@ -9,7 +9,7 @@ const Search = () => {
 
   return (
     <div>
-        <h2>Search</h2>
+        <h2>Search teste</h2>
         <p>{search}</p>
     </div>
   )
