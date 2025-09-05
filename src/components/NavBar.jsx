@@ -33,7 +33,7 @@ const NavBar = () => {
           </>
         }    
         {user &&
-          <button onClick={()=>{logout()}} className="hover:text-blue-400 hover:cursor-pointer px-5">Logout</button>
+          <button onClick={()=>{logout()}} className="hover:text-blue-400 hover:cursor-pointer px-5 py-5">Logout</button>
         }   
       </nav>       
     </header>

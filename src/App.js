@@ -13,6 +13,7 @@ import {
   import Register from "./pages/Register";
   import CreatePost from "./pages/CreatePost";
   import Dashboard from "./pages/Dashboard";
+  import Search from "./pages/Search";
 
 // #### COMPONENTS ####
   import NavBar from "./components/NavBar";
@@ -53,11 +54,12 @@ function App() {
         <BrowserRouter>
           <NavBar></NavBar>
           <main className="flex-grow px-5 py-5 sm:py-15">
-            {/* <div className="max-w-250 bg-gray-800 rounded-xl shadow-md mx-auto p-3 md:p-10 text-center">*/}
+            {/* <div className="max-w-250 bg-gray-800 rounded-xl shadow-md mx-auto p-3 md:p-10 text-center"> */}
             <div className="max-w-250 mx-auto p-3 md:p-10 text-center">            
               <Routes>
                 <Route path="/home"        element={<Home/>}></Route>
                 <Route path="/about"       element={<About/>}></Route>
+                <Route path="/search"      element={<Search/>}></Route>
                 <Route path="/login"       element={!user ?<Login/> :<Navigate to="/home"/>}></Route>
                 <Route path="/register"    element={!user ?<Register/> :<Navigate to="/home"/>}></Route>
                 <Route path="/post/create" element={user ?<CreatePost/> :<Navigate to="/login"/>}></Route>
