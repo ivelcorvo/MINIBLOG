@@ -14,6 +14,7 @@ import {
   import CreatePost from "./pages/CreatePost";
   import Dashboard from "./pages/Dashboard";
   import Search from "./pages/Search";
+  import Post from "./pages/Post";
 
 // #### COMPONENTS ####
   import NavBar from "./components/NavBar";
@@ -60,6 +61,7 @@ function App() {
                 <Route path="/home"        element={<Home/>}></Route>
                 <Route path="/about"       element={<About/>}></Route>
                 <Route path="/search"      element={<Search/>}></Route>
+                <Route path="/post/:id"    element={<Post/>}></Route>
                 <Route path="/login"       element={!user ?<Login/> :<Navigate to="/home"/>}></Route>
                 <Route path="/register"    element={!user ?<Register/> :<Navigate to="/home"/>}></Route>
                 <Route path="/post/create" element={user ?<CreatePost/> :<Navigate to="/login"/>}></Route>

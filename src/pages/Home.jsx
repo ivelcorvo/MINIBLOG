@@ -6,7 +6,6 @@
 // #### COMPONENTS ####
   import PostDetail from "../components/PostDetail";
 
-
 const Home = () => {
 
   const {documents:posts, loading} = useFetchDodcuments("posts");
@@ -15,18 +14,19 @@ const Home = () => {
 
   const navigate = useNavigate(); 
 
-  const handleSubimit = (e)=>{
-    e.preventDefault();
+  // #### PESQUISA ####
+    const handleSubimit = (e)=>{
+      e.preventDefault();
 
-    if(query){
-      return navigate(`/search?q=${query}`);
-    }
-  };
+      if(query){
+        return navigate(`/search?q=${query}`);        
+      }
+    };
 
   return (
     <div>
 
-      {/* #### PEVSQUISA #### */}
+      {/* #### PESQUISA #### */}
         <h1 className="text-2xl font-bold">Veja os nossos posts mais recentes</h1>
         <form onSubmit={handleSubimit}>
           <div className="flex flex-row mt-10 mb-20">
@@ -42,8 +42,8 @@ const Home = () => {
         </form>
 
       {/* #### POSTS #### */}
-        {/* <div className="max-w-150 mx-auto"> */}
-        <div className="mx-auto">
+        <div className="max-w-150 mx-auto">
+          {/* <div className="mx-auto"> */}
           <div className="flex flex-col justify-center my-10">
             {(!loading&&posts&&posts.length===0) && (
               <div>
