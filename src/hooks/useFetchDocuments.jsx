@@ -22,7 +22,7 @@ export const useFetchDodcuments = (docCollection, search=null, uid=null)=>{
 
             setLoading(true);
 
-            const collectionRef = await collection(db,docCollection);
+            const collectionRef = await collection(db,docCollection); //vai receber um objeto do tipo CollectionReference, que representa um “ponteiro” para a coleção dentro do banco
 
             try {
                 let q;
@@ -33,9 +33,9 @@ export const useFetchDodcuments = (docCollection, search=null, uid=null)=>{
                 if(search){
                     q = await query(
                         collectionRef, 
-                        where("tags", "array-contains", search), 
+                        where("tagsArray", "array-contains", search), 
                         orderBy("createdAt", "desc")
-                    );
+                    );                    
                 }else{
                     q = await query(
                         collectionRef, 
