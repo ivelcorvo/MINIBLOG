@@ -1,14 +1,14 @@
 // #### HOOKS ####
   import { useNavigate,Link } from "react-router-dom";
   import { useState } from "react";
-  import { useFetchDodcuments } from "../hooks/useFetchDocuments";
+  import { useFetchDocuments } from "../hooks/useFetchDocuments";
 
 // #### COMPONENTS ####
   import PostDetail from "../components/PostDetail";
 
 const Home = () => {
 
-  const {documents:posts, loading} = useFetchDodcuments("posts");
+  const {documents:posts, loading} = useFetchDocuments("posts");
 
   const [query,setQuery] = useState("");
 
