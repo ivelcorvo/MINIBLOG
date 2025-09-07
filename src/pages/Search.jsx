@@ -1,6 +1,6 @@
   import { Link } from 'react-router-dom';
 // #### HOOKS ####
-  import { useFetchDodcuments } from '../hooks/useFetchDocuments';
+  import { useFetchDocuments } from '../hooks/useFetchDocuments';
   import { useQuery } from '../hooks/useQuery';
 // #### COMPONENTS ####
   import PostDetail from '../components/PostDetail';
@@ -15,7 +15,7 @@ const Search = () => {
   // const [searchParams] = useSearchParams();    
   // assim eu evitaria a driação de um customhook
 
-  const {documents:posts, loading} = useFetchDodcuments("posts", search);
+  const {documents:posts, loading} = useFetchDocuments("posts", search);
 
   return (
     <div className='max-w-150 mx-auto'>

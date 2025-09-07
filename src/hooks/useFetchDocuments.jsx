@@ -7,8 +7,8 @@ import {
   onSnapshot,
   where,
 } from "firebase/firestore";
-
-export const useFetchDodcuments = (docCollection, search=null, uid=null)=>{
+             
+export const useFetchDocuments = (docCollection, search=null, uid=null)=>{
     const [documents,setDocuments] = useState(null);
     const [error,setError]         = useState(null);
     const [loading,setLoading]     = useState(null);
@@ -36,7 +36,14 @@ export const useFetchDodcuments = (docCollection, search=null, uid=null)=>{
                         where("tagsArray", "array-contains", search), 
                         orderBy("createdAt", "desc")
                     );                    
-                }else{
+                }else if(uid){
+                    q = await query(
+                        collectionRef,
+                        where("uid","==",uid),
+                        orderBy("createdAt", "desc")
+                    )
+                }
+                else{
                     q = await query(
                         collectionRef, 
                         orderBy("createdAt", "desc")
