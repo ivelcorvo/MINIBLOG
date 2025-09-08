@@ -12,6 +12,7 @@ import {
   import Login from "./pages/Login";
   import Register from "./pages/Register";
   import CreatePost from "./pages/CreatePost";
+  import EditPost from "./pages/EditPost";
   import Dashboard from "./pages/Dashboard";
   import Search from "./pages/Search";
   import Post from "./pages/Post";
@@ -58,14 +59,15 @@ function App() {
             {/* <div className="max-w-250 bg-gray-800 rounded-xl shadow-md mx-auto p-3 md:p-10 text-center"> */}
             <div className="max-w-250 mx-auto p-3 md:p-10 text-center">            
               <Routes>
-                <Route path="/home"        element={<Home/>}></Route>
-                <Route path="/about"       element={<About/>}></Route>
-                <Route path="/search"      element={<Search/>}></Route>
-                <Route path="/post/:id"    element={<Post/>}></Route>
-                <Route path="/login"       element={!user ?<Login/> :<Navigate to="/home"/>}></Route>
-                <Route path="/register"    element={!user ?<Register/> :<Navigate to="/home"/>}></Route>
-                <Route path="/post/create" element={user ?<CreatePost/> :<Navigate to="/login"/>}></Route>
-                <Route path="/dashboard"   element={user ?<Dashboard/> :<Navigate to="/login/"/>}></Route>
+                <Route path="/home"          element={<Home/>}></Route>
+                <Route path="/about"         element={<About/>}></Route>
+                <Route path="/search"        element={<Search/>}></Route>
+                <Route path="/post/:id"      element={<Post/>}></Route>
+                <Route path="/login"         element={!user ?<Login/>      :<Navigate to="/home"/>}></Route>
+                <Route path="/register"      element={!user ?<Register/>   :<Navigate to="/home"/>}></Route>
+                <Route path="/post/create"   element={user  ?<CreatePost/> :<Navigate to="/login"/>}></Route>
+                <Route path="/post/edit/:id" element={user  ?<EditPost/>   :<Navigate to="/login"/>}></Route>
+                <Route path="/dashboard"     element={user  ?<Dashboard/>  :<Navigate to="/login"/>}></Route>
               </Routes>
             </div>
           </main>
