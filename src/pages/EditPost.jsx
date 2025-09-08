@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { useNavigate,useParams } from "react-router-dom";
 import { useAuthValue } from "../context/AuthContext";
-import { useInsertDocument } from "../hooks/useInsertDocument";
+import { useUpdateDocument } from "../hooks/useUpdateDocument";
+import { useFetchDocument } from "../hooks/useFetchDocument";
 
-const CreatePost = () => {
-
+const EditPost = () => {
+  
   const classInput = "bg-gray-700 rounded-xl shadow-md w-full mb-4 px-3 py-1";
 
   const navigate = useNavigate();
@@ -15,9 +16,24 @@ const CreatePost = () => {
   const [tags,setTags]           = useState([]);
   const [formError,setFormError] = useState("");
 
-  const {insertDocument,response} = useInsertDocument("posts");
-  const {user}                    = useAuthValue();
+  const {user}                   = useAuthValue();
   // console.log(user);
+
+  // #### post selecionado ###
+  const {id}            = useParams();
+  const {document:post} = useFetchDocument("posts", id);
+
+  useEffect(()=>{
+    if(post){
+      const textTags = post.tagsArray.join(", ");
+      setTags(textTags);
+      setTitle(post.title);
+      setBody(post.body);
+      setImage(post.image);
+    }
+  },[post]);
+
+  const {updateDocument,response} = useUpdateDocument("posts");
 
   const handleSubimit = (e)=>{
     e.preventDefault();
@@ -50,15 +66,15 @@ const CreatePost = () => {
     };
     console.log(dat);
 
-    insertDocument(dat);
+    updateDocument(id,dat)
 
-    navigate("/home");
+    navigate("/dashboard");
   };
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">Criar post</h1>
-      <p className="mb-10">Escreva sobre o que quiser e compartilhe o seu conhecimento!</p>
+      <h1 className="text-2xl font-bold">Editar post</h1>
+      <p className="mb-10"></p>
       <form onSubmit={handleSubimit}>
         <div className="max-w-150 mx-auto">
           <div>
@@ -107,7 +123,7 @@ const CreatePost = () => {
           {formError && <p className="text-red-600">{formError}</p>}
         </div>
       </form>
-        <div className="max-w-150 mx-auto text-start mt-5">
+      <div className="max-w-150 mx-auto text-start mt-5">
         <h1>Preview da imagem</h1>
         <div className="max-w-50">
           {image &&
@@ -119,4 +135,4 @@ const CreatePost = () => {
   )
 }
 
-export default CreatePost
+export default EditPost
