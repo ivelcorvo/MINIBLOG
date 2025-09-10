@@ -42,7 +42,7 @@ const NavBar = () => {
               </li>
             }
             <li className={classLiMenu}>
-              <NavLink to={"/home"}  className={({isActive})=>isActive ?linkClassActive:linkClass}>Home</NavLink>
+              <NavLink to={"/"}  className={({isActive})=>isActive ?linkClassActive:linkClass}>Home</NavLink>
             </li>        
             <li className={classLiMenu}>
               <NavLink to={"/about"} className={({isActive})=>isActive ?linkClassActive:linkClass}>About</NavLink>
