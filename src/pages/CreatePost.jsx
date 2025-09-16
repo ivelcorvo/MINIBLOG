@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthValue } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { useInsertDocument } from "../hooks/useInsertDocument";
 import { useDarkModeContext } from "../hooks/useDarkModeContext";
 
@@ -19,7 +19,7 @@ const CreatePost = () => {
   const [formError,setFormError] = useState("");
 
   const {insertDocument,response} = useInsertDocument("posts");
-  const {user}                    = useAuthValue();
+  const {user}                    = useAuth();
   // console.log(user);
 
   const handleSubimit = (e)=>{
