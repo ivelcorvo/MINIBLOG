@@ -3,10 +3,13 @@ import { useNavigate,useParams } from "react-router-dom";
 import { useAuthValue } from "../context/AuthContext";
 import { useUpdateDocument } from "../hooks/useUpdateDocument";
 import { useFetchDocument } from "../hooks/useFetchDocument";
+import { useDarkModeContext } from "../hooks/useDarkModeContext";
 
 const EditPost = () => {
   
-  const classInput = "bg-gray-700 rounded-xl shadow-md w-full mb-4 px-3 py-1";
+  const {darkMode} = useDarkModeContext();
+  
+  const classInput = `${(darkMode)?"bg-gray-700":"bg-gray-200"}  rounded-xl shadow-md w-full mb-4 px-3 py-1`;
 
   const navigate = useNavigate();
 
@@ -115,7 +118,7 @@ const EditPost = () => {
             />           
           </div>
           <div className="mt-5 text-end">
-            <button type="subimit" className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded-xl shadow-md hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" disabled={response.loading}>
+            <button type="subimit" className="text-gray-200 bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded-xl shadow-md hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" disabled={response.loading}>
               {response.loading ?"Salvando...":"Salvar"}
             </button>
           </div>
