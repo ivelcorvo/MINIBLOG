@@ -1,12 +1,15 @@
 // #### HOOKS ####
   import { useNavigate,Link } from "react-router-dom";
-  import { useState } from "react";
+  import { use, useState } from "react";
   import { useFetchDocuments } from "../hooks/useFetchDocuments";
+  import { useDarkModeContext } from "../hooks/useDarkModeContext";
 
 // #### COMPONENTS ####
   import PostDetail from "../components/PostDetail";
 
 const Home = () => {
+
+  const {darkMode} = useDarkModeContext();
 
   const {documents:posts, loading} = useFetchDocuments("posts");
 
@@ -33,11 +36,11 @@ const Home = () => {
             <input 
               type="text" 
               placeholder="Ou busque por tags... "
-              className="bg-gray-700 shadow-md rounded-s-xl w-full px-3 py-2"
+              className={`${(darkMode)?"bg-gray-700":"bg-gray-200"} shadow-md rounded-s-xl w-full px-3 py-2`}
               value={query}
               onChange={e=>setQuery(e.target.value)}
             />
-            <button className="bg-gray-600 hover:bg-gray-700 shadow-md rounded-e-xl px-4 py-2 hover:cursor-pointer">Pesquisar</button>
+            <button className="text-gray-200 bg-gray-600 hover:bg-gray-700 shadow-md rounded-e-xl px-4 py-2 hover:cursor-pointer">Pesquisar</button>
           </div>
         </form>
 

@@ -1,15 +1,19 @@
 import { useState,useEffect } from "react";
 import { useAuthentication } from "../hooks/useAuthentication";
+import { useDarkModeContext } from "../hooks/useDarkModeContext";
 
 const Register = () => {
 
-  const classInput = "bg-gray-700 rounded-xl shadow-md w-full mb-4 px-3 py-1";
+  const {darkMode} = useDarkModeContext();
+  
+  const classInput = `${(darkMode)?"bg-gray-700":"bg-gray-200"}  rounded-xl shadow-md w-full mb-4 px-3 py-1`;
 
   const [displayName,setDisplayName]         = useState("");
   const [email,setEmail]                     = useState("");
   const [password,setPassword]               = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
   const [error,setError]                     = useState("");
+  
 
   const {createUser, loading, error:authError} = useAuthentication();
 
@@ -93,7 +97,7 @@ const Register = () => {
             />
           </div>
           <div className="text-end mt-5">
-            <button type="submit" className="bg-gray-600 px-4 py-2 rounded-xl shadow-md hover:bg-gray-700 hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>{loading?"Cadastrando...":"Cadastrar"}</button>
+            <button type="submit" className="text-gray-200 bg-gray-600 px-4 py-2 rounded-xl shadow-md hover:bg-gray-700 hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>{loading?"Cadastrando...":"Cadastrar"}</button>
           </div>
 
           {/* #### MENSAGEM ALERTA #### */}
