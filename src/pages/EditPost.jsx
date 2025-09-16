@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import { useNavigate,useParams } from "react-router-dom";
-import { useAuthValue } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { useUpdateDocument } from "../hooks/useUpdateDocument";
 import { useFetchDocument } from "../hooks/useFetchDocument";
 import { useDarkModeContext } from "../hooks/useDarkModeContext";
@@ -19,7 +19,7 @@ const EditPost = () => {
   const [tags,setTags]           = useState([]);
   const [formError,setFormError] = useState("");
 
-  const {user}                   = useAuthValue();
+  const {user}                   = useAuth();
   // console.log(user);
 
   // #### post selecionado ###

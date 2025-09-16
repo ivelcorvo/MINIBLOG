@@ -1,6 +1,8 @@
 import { useState,useEffect } from "react";
-import { useAuthentication } from "../hooks/useAuthentication";
+import { useAuthActions } from "../hooks/useAuthActions";
 import { useDarkModeContext } from "../hooks/useDarkModeContext";
+import { auth } from "../firebase/config";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 
@@ -8,14 +10,16 @@ const Register = () => {
   
   const classInput = `${(darkMode)?"bg-gray-700":"bg-gray-200"}  rounded-xl shadow-md w-full mb-4 px-3 py-1`;
 
+  const [showPassword,setShowPassword]       = useState(false);
   const [displayName,setDisplayName]         = useState("");
   const [email,setEmail]                     = useState("");
   const [password,setPassword]               = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
   const [error,setError]                     = useState("");
   
+  const navigate = useNavigate();
 
-  const {createUser, loading, error:authError} = useAuthentication();
+  const { loading, error:authError, createUser, logout} = useAuthActions();
 
   useEffect(()=>{
     if(authError){
@@ -40,16 +44,12 @@ const Register = () => {
         return
       }
 
-      // const res = await createUser(user);
-      await createUser(user);
+      const usuario = await createUser(user);
 
-      // console.log(res);
-      // console.log(user);
-
-      setDisplayName("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
+      if(usuario){
+        await logout();
+        navigate("/login");
+      }
     };
 
   return (
@@ -77,17 +77,26 @@ const Register = () => {
               value={email}
               onChange={e=>setEmail(e.target.value)}
             />
+            <div className="relative">
+              <input 
+                type={`${(showPassword)?"text":"password"}`}
+                name="password"
+                placeholder="Insira sua senha"
+                required
+                className={classInput}
+                value={password}
+                onChange={e=>setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="absolute right-2 top-1 hover:cursor-pointer"
+                onClick={()=>{setShowPassword(!showPassword)}}
+              >
+                {(showPassword)?<i className="fa-solid fa-eye-slash"></i>:<i className="fa-solid fa-eye"></i>}
+              </button>
+            </div>
             <input 
-              type="password"
-              name="password"
-              placeholder="Insira sua senha"
-              required
-              className={classInput}
-              value={password}
-              onChange={e=>setPassword(e.target.value)}
-            />
-            <input 
-              type="password"
+              type={`${(showPassword)?"text":"password"}`}
               name="confirmPassword"
               placeholder="Confirme sua senha"
               required

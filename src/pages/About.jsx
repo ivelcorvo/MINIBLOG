@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useAuthValue } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth"; 
 
 const About = () => {
 
-  const {user} = useAuthValue();
+  const {user} = useAuth();
 
   return (
     <div>
@@ -26,7 +26,7 @@ const About = () => {
             </ul>
           </section >
           <section className="my-10">
-            <Link to={user?"/post/create":"/login"} className="bg-gray-500 hover:bg-gray-600 px-2 py-1 rounded-xl shadow-md">Criar Post</Link>
+            <Link to={user?"/post/create":"/login"} className="text-gray-200 bg-gray-500 hover:bg-gray-600 px-2 py-1 rounded-xl shadow-md">Criar Post</Link>
           </section>
         </div>
     </div>

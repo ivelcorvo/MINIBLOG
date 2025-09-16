@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import { useAuthentication } from "../hooks/useAuthentication";
+import { useAuthActions } from "../hooks/useAuthActions";
 import { useDarkModeContext } from "../hooks/useDarkModeContext";
 
 const Login = () => {
@@ -8,11 +8,12 @@ const Login = () => {
   
   const classInput = `${(darkMode)?"bg-gray-700":"bg-gray-200"}  rounded-xl shadow-md w-full mb-4 px-3 py-1`;
 
-  const [email,setEmail]       = useState("");
-  const [password,setPassword] = useState("");
-  const [error,setError]       = useState("");
+  const [showPassword,setShowPassword] = useState(false);
+  const [email,setEmail]               = useState("");
+  const [password,setPassword]         = useState("");
+  const [error,setError]               = useState("");
 
-  const {sigin, loading, error:authError} = useAuthentication();
+  const {sigin, loading, error:authError} = useAuthActions();
 
   useEffect(()=>{
     if(authError){
@@ -58,15 +59,24 @@ const Login = () => {
               value={email}
               onChange={e=>setEmail(e.target.value)}
             />
-            <input 
-              type="password"
-              name="password"
-              placeholder="Insira sua senha"
-              required
-              className={classInput}
-              value={password}
-              onChange={e=>setPassword(e.target.value)}
-            />
+            <div className="relative">
+              <input 
+                type={`${(showPassword)?"text":"password"}`}
+                name="password"
+                placeholder="Insira sua senha"
+                required
+                className={classInput}
+                value={password}
+                onChange={e=>setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="absolute right-2 top-1 hover:cursor-pointer"
+                onClick={()=>{setShowPassword(!showPassword)}}
+              >
+                {(showPassword)?<i className="fa-solid fa-eye-slash"></i>:<i className="fa-solid fa-eye"></i>}
+              </button>
+            </div>            
           </div>
           <div className="text-end mt-5">
             <button type="submit" className="text-gray-200 bg-gray-600 px-4 py-2 rounded-xl shadow-md hover:bg-gray-700 hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>{loading?"Entrando...":"Entrar"}</button>

@@ -1,17 +1,17 @@
 import { NavLink,useLocation } from "react-router-dom";
-import { useAuthentication } from "../hooks/useAuthentication";
-import { useAuthValue } from "../context/AuthContext";
+import { useAuthActions } from "../hooks/useAuthActions";
+import { useAuth } from "../hooks/useAuth"; 
 import { useState,useEffect } from "react";
 import { useDarkModeContext } from "../hooks/useDarkModeContext";
 
 const NavBar = () => {
   const {darkMode,setDarkMode} = useDarkModeContext();
 
-  const{user} = useAuthValue();
+  const{user} = useAuth();
   // console.log(user);
 
   // #### LOGOUT ####
-    const{logout} = useAuthentication();
+    const{logout} = useAuthActions();
 
   // #### COLLASPSE BTN MENU ####
     const [collapse,setCollapse] = useState(false);
