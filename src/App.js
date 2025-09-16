@@ -23,7 +23,7 @@ import {
 
 // #### HOOKS ####
   import { useState,useEffect } from "react";
-  // import { useAuthentication } from "./hooks/useAuthentication";
+  import { useDarkModeContext } from "./hooks/useDarkModeContext";
 
 // #### FIREBASE ####
   import { onAuthStateChanged } from "firebase/auth";
@@ -33,6 +33,7 @@ import {
   import { AuthContextProvider } from './context/AuthContext';
 
 function App() {
+  const {darkMode} = useDarkModeContext();
 
   const [user,setUser] = useState(undefined);
 
@@ -51,7 +52,7 @@ function App() {
 
 
   return (
-    <div className="flex flex-col bg-gray-900 min-h-screen p-0 m-0 text-white">    
+    <div className={` ${(darkMode)?"bg-gray-900 text-gray-200":"bg-gray-100 text-gray-600"} flex flex-col  min-h-screen p-0 m-0 `}>    
       <AuthContextProvider value={{user}}>
         <BrowserRouter>
           <NavBar></NavBar>

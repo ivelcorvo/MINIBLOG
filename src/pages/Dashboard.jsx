@@ -40,9 +40,9 @@ const Dashboard = () => {
                   </div>
                   <div className="col-span-1 text-end ">
                     {/* <button className="bg-gray-600 hover:scale-110 shadow-md rounded-xl px-3 py-1 m-2 hover:cursor-pointer" onClick={()=>{setCollapse(!collapse)}}>Ver</button>                       */}
-                    <Link   className="bg-gray-600 hover:bg-gray-700 shadow-md rounded-xl px-3 py-1 m-2 inline-block"         to={`/post/${post.id}`} >Ver</Link>
-                    <Link   className="bg-gray-600 hover:bg-gray-700 shadow-md rounded-xl px-3 py-1 m-2 inline-block"         to={`/post/edit/${post.id}`} >Editar</Link>
-                    <button className="bg-gray-600 hover:bg-red-900  shadow-md rounded-xl px-3 py-1 m-2 hover:cursor-pointer" onClick={()=>{deleteDocument(post.id)}} >Deletar</button>
+                    <Link   className="text-gray-200 bg-gray-600 hover:bg-gray-700 shadow-md rounded-xl px-3 py-1 m-2 inline-block"         to={`/post/${post.id}`} >Ver</Link>
+                    <Link   className="text-gray-200 bg-gray-600 hover:bg-gray-700 shadow-md rounded-xl px-3 py-1 m-2 inline-block"         to={`/post/edit/${post.id}`} >Editar</Link>
+                    <button className="text-gray-200 bg-gray-600 hover:bg-red-900  shadow-md rounded-xl px-3 py-1 m-2 hover:cursor-pointer" onClick={()=>{deleteDocument(post.id)}} >Deletar</button>
                   </div>
                   {/* <div className={`transition-all duration-500 overflow-hidden overflow-y-scroll ${(collapse)?abrir:fechar} mt-5 pe-5`}>
                     {post.body}
