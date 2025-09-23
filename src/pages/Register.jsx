@@ -7,7 +7,7 @@ const Register = () => {
 
   const {darkMode} = useDarkModeContext();
   
-  const classInput = `${(darkMode)?"bg-gray-700":"bg-gray-200"}  rounded-xl shadow-md w-full mb-4 px-3 py-1`;
+  const classInput = `${(darkMode)?"bg-gray-700":"bg-gray-200"}  rounded-3xl shadow-md w-full mb-4 px-4 py-1`;
 
   const [showPassword,setShowPassword]       = useState(false);
   const [displayName,setDisplayName]         = useState("");
@@ -53,7 +53,7 @@ const Register = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-10">Register</h1>
+      <h1 className="text-2xl font-bold mb-10">Cadastro</h1>
       <form onSubmit={handleSubimit}>
         <div className="max-w-150 mx-auto">
         {/* <div className="w-1/2 mx-auto"> */}
@@ -88,7 +88,7 @@ const Register = () => {
               />
               <button
                 type="button"
-                className="absolute right-2 top-1 hover:cursor-pointer"
+                className="absolute right-2 top-1 hover:cursor-pointer opacity-50"
                 onClick={()=>{setShowPassword(!showPassword)}}
               >
                 {(showPassword)?<i className="fa-solid fa-eye-slash"></i>:<i className="fa-solid fa-eye"></i>}
@@ -105,7 +105,7 @@ const Register = () => {
             />
           </div>
           <div className="text-end mt-5">
-            <button type="submit" className="text-gray-200 bg-gray-600 px-4 py-2 rounded-xl shadow-md hover:bg-gray-700 hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>{loading?"Cadastrando...":"Cadastrar"}</button>
+            <button type="submit" className="text-gray-200 bg-blue-600 hover:bg-blue-700 px-4 py-1 rounded-3xl shadow-md  hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>{loading?"Cadastrando...":"Cadastrar"}</button>
           </div>
 
           {/* #### MENSAGEM ALERTA #### */}

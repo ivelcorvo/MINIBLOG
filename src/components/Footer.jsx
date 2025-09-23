@@ -9,10 +9,10 @@ const Footer = () => {
         <p>&copy; 2025 Levi Alves Junior - Todos os direitos reservados</p>
         <div className="mx-auto md:mx-0 mt-5 md:mt-0" >
           <a href="https://www.linkedin.com/in/levi-alves-junior-09b91a189/" target="_blank" rel="noreferrer" className="m-2">
-            <i className="fa-brands fa-linkedin fa-2x"></i>
+            <i className="fa-brands fa-linkedin fa-2x text-blue-600 hover:scale-125"></i>
           </a>
           <a href="https://github.com/ivelcorvo" target="_blank" rel="noreferrer" className="m-2">
-            <i className="fa-brands fa-github fa-2x"></i>
+            <i className="fa-brands fa-github-square fa-2x text-blue-600 hover:scale-125"></i>
           </a>
         </div>
     </footer>    

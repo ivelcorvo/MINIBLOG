@@ -27,7 +27,6 @@ const Search = () => {
       )}          
       {(!loading&&posts&&posts.length>0) && 
         posts.map((post,i)=>(
-          // <PostDetail key={`${post.uid}-${i}`} post={post}></PostDetail>
           <PostDetail key={post.id} post={post}></PostDetail>
         ))
       }      
