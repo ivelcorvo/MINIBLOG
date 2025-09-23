@@ -1,7 +1,6 @@
 import { useState,useEffect } from "react";
 import { useAuthActions } from "../hooks/useAuthActions";
 import { useDarkModeContext } from "../hooks/useDarkModeContext";
-import { auth } from "../firebase/config";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {

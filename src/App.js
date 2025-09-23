@@ -22,13 +22,10 @@ import {
   import Footer from "./components/Footer";
 
 // #### HOOKS ####
-  import { useState,useEffect } from "react";
   import { useDarkModeContext } from "./hooks/useDarkModeContext";
   import { useAuth } from "./hooks/useAuth";
 
 // #### FIREBASE ####
-  import { onAuthStateChanged } from "firebase/auth";
-  import { auth } from "./firebase/config"; 
 
 // ##### CONTEXT #####
 
@@ -46,7 +43,6 @@ function App() {
       <BrowserRouter>
         <NavBar></NavBar>
         <main className="flex-grow px-3 py-20">
-          {/* <div className="max-w-250 bg-gray-800 rounded-xl shadow-md mx-auto p-3 md:p-10 text-center"> */}
           <div className="max-w-250 mx-auto p-3 md:p-10 text-center">            
             <Routes>
               <Route path="/"              element={<Home/>}></Route>
